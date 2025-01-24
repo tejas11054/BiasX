@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login/Signup</title>
+  <link rel="icon" href="../images/2.png" type="image/png">
+  <link rel="stylesheet" href="../styles/signup.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="backbox">
+      <div class="loginMsg">
+        <div class="textcontent">
+          <p class="title">Don't have an account?</p>
+          <p>Sign up to start the Journey!</p>
+          <button id="switch1">SIGN UP</button>
+        </div>
+      </div>
+      <div class="signupMsg visibility">
+        <div class="textcontent">
+          <p class="title">Have an account?</p>
+          <p>Log in to see all your work</p>
+          <button id="switch2">LOG IN</button>
+        </div>
+      </div>
+    </div>
+    <!-- backbox -->
+
+    <div class="frontbox">
+      <div class="login">
+        <h2>LOG IN</h2>
+        <form action="login.php" method="POST"> <!-- Login form added -->
+          <div class="inputbox">
+            <input type="text" name="email" placeholder="  EMAIL" required>
+            <input type="password" name="password" placeholder="  PASSWORD" required>
+
+          </div>
+          <p><a href="forget.php">FORGET PASSWORD?</a></p>
+          <button type="submit">LOG IN</button>
+        </form>
+      </div>
+
+      <div class="signup hide">
+        <h2>SIGN UP</h2>
+        <form action="signup.php" method="POST">
+          <div class="inputbox">
+            <input type="text" name="name" placeholder="  FULLNAME" required>
+            <input type="email" name="email" placeholder="  EMAIL" required>
+            <input type="password" name="password" placeholder="  PASSWORD" required>
+          </div>
+          <button type="submit">SIGN UP</button>
+        </form>
+      </div>
+
+    </div>
+    <!-- frontbox -->
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

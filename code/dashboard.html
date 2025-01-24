@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="icon" href="../images/2.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+        <h1>Dashboard</h1>
+        <ul>
+            <li><a href="#" class="panel-item"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="profile.php" class="panel-item"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="forget.php" class="panel-item"><i class="fas fa-cogs"></i> Change Password</a></li>
+            <li><a href="#" class="panel-item"><i class="fas fa-chart-line"></i> Analytics</a></li>
+            <li><a href="#" class="panel-item"><i class="fas fa-file-alt"></i> Reports</a></li>
+            <li><a href="index.html" class="panel-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>            
+        </ul>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel">
+        <div class="top-content">
+            <div class="section">
+                <h3>Overview</h3>
+                <p>One Chart will come here</p>
+            </div>
+            <div class="section">
+                <h3>Recent Activities</h3>
+                <p>One Chart will come here</p>
+            </div>
+        </div>
+
+        <div class="bottom-content">
+            <h3>Content</h3>
+            <p>Main Content will come here</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    fetch('dashboard.php')
+    .then(response => response.text())
+    .then(data => { 
+        console.log(data);  // Log the response from PHP
+        if (data !== 'not_logged_in') {
+            document.getElementById('user-id').textContent = "Logged in as User ID: " + data;
+        } else {
+            document.getElementById('user-id').textContent = "Please log in.";
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);  // Log any fetch errors
+    });
+</script>
+
+</body>
+</html>

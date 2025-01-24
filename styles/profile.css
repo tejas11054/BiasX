@@ -1,0 +1,92 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #102A43;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Centered Box */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 450px;
+    text-align: center;
+}
+
+/* Heading */
+h1 {
+    color: #0F4C75;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    text-align: left;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #102A43;
+    margin-left: 7px;
+}
+
+input, select {
+    width: calc(100% - 16px);
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #3282B8;
+    border-radius: 8px;
+    background-color: #e0e0e0;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-left: 7px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #0F4C75;
+}
+
+/* Submit Button */
+input[type="submit"] {
+    background-color: #0F4C75; 
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background-color: #3282B8;  /* Light blue on hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Back to Dashboard Link */
+a {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #0F4C75;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #3282B8;
+    text-decoration: none;
+}
