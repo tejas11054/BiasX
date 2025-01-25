@@ -1,87 +1,63 @@
 <?php
-// Establish database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "bdamt_db";  // Replace with your database name
+// Database connection
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$dbname = 'bdamt_db';
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch queries from contact table
-$sql = "SELECT name, email, msg FROM contact";  // Replace 'contact' with your table name
-$result = $conn->query($sql);
-?>
+// Query to fetch queries data from the 'contact' table
+$query = "SELECT name, email, msg FROM contact ORDER BY name ASC";
+$result = $conn->query($query);
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queries</title>
-    <link rel="stylesheet" href="../styles/admin_dashboard.css">
-</head>
-<body>
+// Check if query execution was successful
+if (!$result) {
+    die("Error executing query: " . $conn->error);
+}
 
-<div class="container">
-    <div class="left-panel">
-        <h1>Dashboard</h1>
-        <ul>
-            <li><a href="#" class="panel-item"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="profile.php" class="panel-item"><i class="fas fa-user"></i> Users</a></li>
-            <li><a href="forget.php" class="panel-item"><i class="fas fa-comment"></i> Queries</a></li>
-            <li><a href="index.html" class="panel-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>            
-        </ul>
-    </div>
+// Check if there are results
+if ($result->num_rows > 0) {
+    echo "<table class='query' border='1'>
+            <tr>
+                <th>Sr. No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Action</th>
+            </tr>";
+    
+    $sr_no = 1;
+    while ($row = $result->fetch_assoc()) {
+        $email = htmlspecialchars($row['email']);
+        echo "<tr>
+                <td>" . $sr_no++ . "</td>
+                <td>" . htmlspecialchars($row['name']) . "</td>
+                <td>" . $email . "</td>
+                <td>" . nl2br(htmlspecialchars($row['msg'])) . "</td>
+                <td>
+                    <button class='answer-btn' data-email='$email'>Answer</button>
+                </td>
+              </tr>";
 
-    <div class="right-panel">
-        <div class="top-content">
-            <div class="section">
-                <h3>Queries</h3>
+        // Hidden row for the answer text box
+        echo "<tr id='answer-box-$email' class='answer-row' style='display: none;'>
+                <td colspan='8'>
+                    <textarea class='answer-text'id='answer-text-$email' placeholder='Type your answer here'></textarea>
+                    <button class='send-answer-btn' data-email='$email'>Send</button>
+                </td>
+              </tr>";
+    }
+    echo "</table>";
+} else {
+    echo "No queries found";
+}
 
-                <!-- Table to display queries -->
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Sr. No</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Message</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if ($result->num_rows > 0) {
-                            $sr_no = 1;  // Starting serial number
-                            // Output data of each row
-                            while($row = $result->fetch_assoc()) {
-                                echo "<tr>
-                                        <td>" . $sr_no++ . "</td>
-                                        <td>" . $row['name'] . "</td>
-                                        <td>" . $row['email'] . "</td>
-                                        <td>" . $row['msg'] . "</td>
-                                    </tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='4'>No queries found</td></tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-</body>
-</html>
-
-<?php
-// Close the connection
 $conn->close();
 ?>

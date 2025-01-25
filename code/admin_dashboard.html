@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../styles/admin_dashboard.css">
+    <link rel="stylesheet" href="../styles/admin-dashboard.css">
     <link rel="icon" href="../images/2.png" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
@@ -26,8 +26,8 @@
     <div class="right-panel">
         <div class="top-content">
             <div class="section">
-                <h3>Overview</h3>
-                <p>One Chart will come here</p>
+                <h1>BiasX</h1>
+                <h3>X Out Bias, Embrace Fairness</h3>
             </div>
             <!-- Here, the Users Table will be loaded -->
         </div>
@@ -49,19 +49,51 @@
             });
     });
     
-    // Event listener for the Queries button
     document.getElementById('queriesBtn').addEventListener('click', function() {
-        // Use AJAX to fetch the query data
         fetch('get_queries.php')
             .then(response => response.text())
             .then(data => {
-                // Insert the data into the top-content section
                 document.querySelector('.top-content').innerHTML = data;
+
+                // Answer button functionality
+                document.querySelectorAll('.answer-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        let userEmail = this.getAttribute('data-email');
+                        let answerBox = document.getElementById('answer-box-' + userEmail);
+                        answerBox.style.display = (answerBox.style.display === 'none') ? 'table-row' : 'none';
+                    });
+                });
+
+                // Send answer button functionality
+                document.querySelectorAll('.send-answer-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        let userEmail = this.getAttribute('data-email');
+                        let answerText = document.getElementById('answer-text-' + userEmail).value;
+
+                        if (answerText.trim() === '') {
+                            alert('Please enter a response before sending.');
+                            return;
+                        }
+
+                        fetch('send_answer.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded'
+                            },
+                            body: `email=${userEmail}&answer=${encodeURIComponent(answerText)}`
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            alert(data);
+                            document.getElementById('answer-box-' + userEmail).style.display = 'none';
+                        })
+                        .catch(error => console.error("Error sending answer:", error));
+                    });
+                });
             })
-            .catch(error => {
-                console.error("Error fetching query data: ", error);
-            });
+            .catch(error => console.error("Error fetching queries:", error));
     });
+
     </script>
     
 
