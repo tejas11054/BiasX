@@ -63,6 +63,8 @@ header {
   nav ul li a:hover {
     color: #ff0077;
   }
+
+
   
   /* Hero Section */
   .hero-section {
@@ -395,4 +397,6 @@ header {
       transform: translateY(0);
     }
   }
+  
+
   

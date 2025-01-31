@@ -32,7 +32,6 @@ h1 {
     justify-content: center; /* Optional: This centers the form elements vertically if the container has a height */
     height: 100vh; /* This makes the container fill the screen height */
     width: 100%;
-    padding-right: 5px;
 }
 
 label {

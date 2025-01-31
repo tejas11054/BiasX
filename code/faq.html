@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="icon" href="../images/2.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #102A43;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .faq-container {
+            width: 900px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            height: 100%;
+            overflow-y: scroll;
+            scrollbar-width: thin;
+            scrollbar-color: transparent transparent;
+        }
+
+        .faq-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .faq-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .faq-container::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
+        
+        .faq-item {
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            padding: 15px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .faq-item:hover {
+            background-color: #3282B8; 
+            cursor: pointer;
+        }
+        .question {
+            font-weight: bold;
+            color: #0F4C75;
+            font-size: 18px;
+        }
+        .answer {
+            display: none;
+            padding-top: 10px;
+            color: black;
+            font-size: 16px;
+        }
+        h2 {
+            color: #0F4C75; 
+            text-align: center;
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="faq-container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="question">What is this website about?</div>
+            <div class="answer">This website is designed to help users detect and mitigate bias in their datasets. Users can upload their dataset files, and the system will analyze the data for any potential bias. If bias is detected, it will automatically apply mitigation techniques and provide an updated version of the dataset along with an analysis report.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">Is there any cost associated with using this service?</div>
+            <div class="answer">No, the service is completely free of cost. You can upload your datasets, get the analysis, and receive the updated dataset with bias mitigation without any charges.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">What kind of datasets can I upload?</div>
+            <div class="answer">You can upload datasets in common formats like CSV, Excel, or JSON. The system is designed to handle most structured datasets, including those containing numerical, categorical, or mixed data types.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">What types of bias can the system detect?</div>
+            <div class="answer">Our system can detect several types of bias, such as gender, racial, age, and socioeconomic biases. It can also identify issues related to class imbalance, data representation, and fairness in the dataset.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">Will I get a report after the bias is mitigated?</div>
+            <div class="answer">Yes, after the bias detection and mitigation process, you will receive a detailed analysis report. The report will explain the biases found, the steps taken to mitigate them, and the impact of those changes on the dataset's fairness.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">How can I download the updated dataset after bias mitigation?</div>
+            <div class="answer">Once the bias mitigation process is complete, you can download the updated dataset directly from the website. A download link will be provided along with the analysis report.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">How do I reset my password?</div>
+            <div class="answer">You can reset your password by clicking on the 'Forgot Password' link on the login page.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">Can I change my email address?</div>
+            <div class="answer">Yes, you can update your email in the account settings.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">How can I contact support?</div>
+            <div class="answer">You can contact our support team via email at teambiasx@gmailcom.</div>
+        </div>
+        <div class="faq-item">
+            <div class="question">What are the working hours?</div>
+            <div class="answer">Our support is available 24/7.</div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.question').forEach(item => {
+            item.addEventListener('click', () => {
+                let answer = item.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>

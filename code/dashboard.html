@@ -38,13 +38,45 @@
         </div>
 
         <div class="bottom-content">
-            <h3>Content</h3>
-            <p>Main Content will come here</p>
+            <h3>Upload & Process CSV</h3>
+            <input type="file" id="csvFile" accept=".csv">
+            <button onclick="uploadFile()">Upload & Process</button>
+            <div id="output"></div>
         </div>
     </div>
 </div>
 
 <script>
+    function uploadFile() {
+        let fileInput = document.getElementById('csvFile');
+        let file = fileInput.files[0];
+        if (!file) {
+            alert("Please select a CSV file.");
+            return;
+        }
+
+        let formData = new FormData();
+        formData.append("csvFile", file);
+
+        fetch("upload.php", {
+    method: "POST",
+    body: formData
+})
+.then(response => response.text())  // Get raw response
+.then(data => {
+    console.log("Raw Response from PHP:", data);  // Log the actual response from the server
+    try {
+        let jsonData = JSON.parse(data);  // Attempt to parse JSON
+        document.getElementById("output").innerText = "Processing output:\n" + JSON.stringify(jsonData, null, 2);
+    } catch (error) {
+        document.getElementById("output").innerText = "Error: Invalid response from server.\nCheck the console for details.";
+        console.error("JSON Parse Error:", error);
+    }
+})
+.catch(error => console.error("Fetch Error:", error));
+
+    }
+
     fetch('dashboard.php')
     .then(response => response.text())
     .then(data => { 
