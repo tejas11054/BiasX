@@ -35,6 +35,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         die("<script>alert('Password must be at least 6 characters long.'); window.history.back();</script>");
     }
 
+    // **Check if email already exists**
+    $checkEmailSql = "SELECT id FROM users WHERE email = ?";
+    $stmt = $conn->prepare($checkEmailSql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        // Email already exists
+        $stmt->close();
+        echo "<script>alert('This email is already registered. Please use a different email.'); window.history.back();</script>";
+        exit;
+    }
+
+    $stmt->close();
+
     // Hash the password for security
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -49,9 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Store the user ID in session
         $_SESSION['user_id'] = $user_id;
-
-        // Debugging: Log the session value
-        error_log("User ID set in session: " . $_SESSION['user_id']);
 
         // Redirect to dashboard.html
         echo "<script>window.location.href='dashboard.html';</script>";
