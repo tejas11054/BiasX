@@ -40,9 +40,7 @@ Ultimately, this work contributes to the broader goal of ensuring that AI techno
 - Python
 - NumPy, Pandas, Matplotlib, Seaborn
 - Scikit-learn
-- AIF360 (IBM AI Fairness 360 Toolkit)
-- Flask / Streamlit (for web interface)
-- Jupyter Notebook
+- HTML, CSS, PHP (web development)
 
 ---
 
