@@ -1,0 +1,13 @@
+{
+    "name": "Employee.csv",
+    "target": "LeaveOrNot",
+    "sensitive_attribute": [
+        "Gender"
+    ],
+    "privileged_group": [
+        "Male"
+    ],
+    "unprivileged_group": [
+        "Female"
+    ]
+}

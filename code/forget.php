@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
             $mail->Username = 'teambiasx@gmail.com';
-            $mail->Password = 'sdju fdbm tkzi wpxm';
+            $mail->Password = 'ntxq zgjg hlcp bsaw';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
@@ -95,7 +95,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forget Password</title>
     <link rel="stylesheet" href="../styles/forfett.css">
-    <link rel="icon" href="../images/2.png" type="image/png">
+    <link rel="icon" href="../images/logo.png" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>

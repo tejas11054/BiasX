@@ -1,0 +1,24 @@
+HTTP Code: 200
+Response: {
+  "file1": "dataset.csv",
+  "file2": "dataset2.csv",
+  "message": "Files uploaded successfully",
+  "success": true
+}
+
+HTTP Code: 200
+Response: {
+  "file1": "dataset.csv",
+  "file2": "dataset2.csv",
+  "message": "Files uploaded successfully",
+  "success": true
+}
+
+User ID: 12
+Flask Response: {
+  "file1": "dataset.csv",
+  "file2": "dataset2.csv",
+  "message": "Files uploaded successfully",
+  "success": true
+}
+

@@ -1,0 +1,20 @@
+[
+    {
+        "dataset": "loan_data.csv",
+        "rows": 45000,
+        "columns": 14,
+        "Attribute_with_bias": "loan_intent",
+        "mitigation_technique_used": "reweighting",
+        "model_trained": "Logistic Regression",
+        "metrics": {
+            "statistical_parity": -0.06610636448213111,
+            "disparate impact": 1.389865692077929,
+            "equalized_odds": 0.07994085839946063,
+            "equalized_opportunity": 0.0434533043748061,
+            "predictive_parity": 0.2473925346988276
+        },
+        "Previous_accuracy": 0.8917777777777778,
+        "New_accuracy": 0.8917777777777778,
+        "Timestamp": "09-04-2025 21:58:13"
+    }
+]

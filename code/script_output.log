@@ -1,0 +1,974 @@
+2025-04-09 23:00:01.504725: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-09 23:00:09.460957: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Encoding categorical target variable
+INFO:data_preprocessor:Detected 2 numerical columns
+INFO:data_preprocessor:Detected 7 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+Data preprocessing completed successfully!
+Training set shape: (1136, 9)
+Testing set shape: (284, 9)
+
+Target variable encoding:
+CPI -> 0
+🔍 Using 'group' as the sensitive attribute (from config)
+Using 'group' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 1015
+Unprivileged group (0): 405
+
+Positive outcomes:
+Privileged group positive outcomes: 0
+Unprivileged group positive outcomes: 0
+
+Probabilities:
+P(Y=1|privileged): 0.000
+P(Y=1|unprivileged): 0.000
+
+Calculated metrics:
+statistical_parity_difference: 0.000
+disparate_impact: 1.000
+positive_rate_privileged: 0.000
+positive_rate_unprivileged: 0.000
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 0.0%
+- Positive outcome rate for unprivileged group: 0.0%
+- Statistical Parity Difference is 0.000, suggesting minimal bias
+- Disparate Impact is 1.000, within acceptable range (0.8-1.25)
+Traceback (most recent call last):
+  File "C:\xampp\htdocs\Project\BiasX\code\automated_bias_mitigation.py", line 301, in <module>
+    main()
+  File "C:\xampp\htdocs\Project\BiasX\code\automated_bias_mitigation.py", line 239, in main
+    y_pred, prev_acc = bias_mitigator.train_and_evaluate(X_train, y_train, X_test, y_test)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py", line 41, in train_and_evaluate
+    model.fit(X_train, y_train)
+  File "C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py", line 1389, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\linear_model\_logistic.py", line 1276, in fit
+    self.coef_, self.intercept_, self.n_iter_ = _fit_liblinear(
+                                                ^^^^^^^^^^^^^^^
+  File "C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\svm\_base.py", line 1187, in _fit_liblinear
+    raise ValueError(
+ValueError: This solver needs samples of at least 2 classes in the data, but the data contains only one class: np.int64(0)
+2025-04-09 23:01:40.929299: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-09 23:01:47.563477: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 7 numerical columns
+INFO:data_preprocessor:Detected 13 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but LogisticRegression was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (800, 20)
+Testing set shape: (200, 20)
+🔍 Using 'a9' as the sensitive attribute (from config)
+Using 'a9' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 310
+Unprivileged group (0): 690
+
+Positive outcomes:
+Privileged group positive outcomes: 419
+Unprivileged group positive outcomes: 881
+
+Probabilities:
+P(Y=1|privileged): 1.352
+P(Y=1|unprivileged): 1.277
+
+Calculated metrics:
+statistical_parity_difference: 0.075
+disparate_impact: 0.945
+positive_rate_privileged: 1.352
+positive_rate_unprivileged: 1.277
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 135.2%
+- Positive outcome rate for unprivileged group: 127.7%
+- Statistical Parity Difference is 0.075, indicating bias favoring the privileged group
+- Disparate Impact is 0.945, within acceptable range (0.8-1.25)
+Model Accuracy (mitigator file): 0.7600
+
+🚀 Selected Bias Mitigation Technique: disparate_impact_remover
+
+Applying disparate_impact_remover...
+
+
+Applying Disparate Impact Remover...
+Model Accuracy (mitigator file): 0.7650
+
+✅ Mitigated Model Accuracy: 0.7650
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/german.csv_disparate_impact_remover_20250409_230221/'
+{'statistical_parity_difference': np.float64(0.07480130902290782), 'disparate_impact': np.float64(0.9446577427276815), 'positive_rate_privileged': np.float64(1.3516129032258064), 'positive_rate_unprivileged': np.float64(1.2768115942028986), 'Equalized Odds': np.float64(0.2204984557925734), 'Equalized Opportunity': np.float64(0.10084033613445376), 'Predictive Parity': np.float64(0.0)}
+JSON SAVE PATH =  Mitigated_Model\german.csv_disparate_impact_remover_20250409_230221\results.json
+✅ Results saved to Mitigated_Model\german.csv_disparate_impact_remover_20250409_230221\results.json
+2025-04-09 23:45:17.191082: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-09 23:45:27.659377: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 4 numerical columns
+INFO:data_preprocessor:Detected 4 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (3722, 8)
+Testing set shape: (931, 8)
+🔍 Using 'gender' as the sensitive attribute (from config)
+Using 'gender' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 2778
+Unprivileged group (0): 1875
+
+Positive outcomes:
+Privileged group positive outcomes: 716
+Unprivileged group positive outcomes: 884
+
+Probabilities:
+P(Y=1|privileged): 0.258
+P(Y=1|unprivileged): 0.471
+
+Calculated metrics:
+statistical_parity_difference: -0.214
+disparate_impact: 1.829
+positive_rate_privileged: 0.258
+positive_rate_unprivileged: 0.471
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 25.8%
+- Positive outcome rate for unprivileged group: 47.1%
+- Statistical Parity Difference is -0.214, indicating bias favoring the unprivileged group
+- Disparate Impact is 1.829, indicating significant bias against privileged group
+Model Accuracy (mitigator file): 0.7057
+
+🚀 Selected Bias Mitigation Technique: prejudice_remover
+
+Applying prejudice_remover...
+
+
+Applying Prejudice Remover...
+
+✅ Mitigated Model Accuracy: 0.7465
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/Employee.csv_prejudice_remover_20250409_234627/'
+{'statistical_parity_difference': np.float64(-0.21372728581713463), 'disparate_impact': np.float64(1.8292379888268158), 'positive_rate_privileged': np.float64(0.257739380849532), 'positive_rate_unprivileged': np.float64(0.47146666666666665), 'Equalized Odds': np.float64(0.8778041592437447), 'Equalized Opportunity': np.float64(0.5448158914728682), 'Predictive Parity': np.float64(0.1539753639417693)}
+JSON SAVE PATH =  Mitigated_Model\Employee.csv_prejudice_remover_20250409_234627\results.json
+✅ Results saved to Mitigated_Model\Employee.csv_prejudice_remover_20250409_234627\results.json
+2025-04-09 23:47:04.917777: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-09 23:47:12.248997: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 7 numerical columns
+INFO:data_preprocessor:Detected 13 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but LogisticRegression was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (800, 20)
+Testing set shape: (200, 20)
+🔍 Using 'a9' as the sensitive attribute (from config)
+Using 'a9' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 310
+Unprivileged group (0): 690
+
+Positive outcomes:
+Privileged group positive outcomes: 419
+Unprivileged group positive outcomes: 881
+
+Probabilities:
+P(Y=1|privileged): 1.352
+P(Y=1|unprivileged): 1.277
+
+Calculated metrics:
+statistical_parity_difference: 0.075
+disparate_impact: 0.945
+positive_rate_privileged: 1.352
+positive_rate_unprivileged: 1.277
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 135.2%
+- Positive outcome rate for unprivileged group: 127.7%
+- Statistical Parity Difference is 0.075, indicating bias favoring the privileged group
+- Disparate Impact is 0.945, within acceptable range (0.8-1.25)
+Model Accuracy (mitigator file): 0.7600
+
+🚀 Selected Bias Mitigation Technique: disparate_impact_remover
+
+Applying disparate_impact_remover...
+
+
+Applying Disparate Impact Remover...
+Model Accuracy (mitigator file): 0.7650
+
+✅ Mitigated Model Accuracy: 0.7650
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/german.csv_disparate_impact_remover_20250409_234743/'
+{'statistical_parity_difference': np.float64(0.07480130902290782), 'disparate_impact': np.float64(0.9446577427276815), 'positive_rate_privileged': np.float64(1.3516129032258064), 'positive_rate_unprivileged': np.float64(1.2768115942028986), 'Equalized Odds': np.float64(0.2204984557925734), 'Equalized Opportunity': np.float64(0.10084033613445376), 'Predictive Parity': np.float64(0.0)}
+JSON SAVE PATH =  Mitigated_Model\german.csv_disparate_impact_remover_20250409_234743\results.json
+✅ Results saved to Mitigated_Model\german.csv_disparate_impact_remover_20250409_234743\results.json
+2025-04-10 00:03:55.496198: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-10 00:04:01.504179: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 7 numerical columns
+INFO:data_preprocessor:Detected 13 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but LogisticRegression was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (800, 20)
+Testing set shape: (200, 20)
+🔍 Using 'a9' as the sensitive attribute (from config)
+Using 'a9' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 310
+Unprivileged group (0): 690
+
+Positive outcomes:
+Privileged group positive outcomes: 419
+Unprivileged group positive outcomes: 881
+
+Probabilities:
+P(Y=1|privileged): 1.352
+P(Y=1|unprivileged): 1.277
+
+Calculated metrics:
+statistical_parity_difference: 0.075
+disparate_impact: 0.945
+positive_rate_privileged: 1.352
+positive_rate_unprivileged: 1.277
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 135.2%
+- Positive outcome rate for unprivileged group: 127.7%
+- Statistical Parity Difference is 0.075, indicating bias favoring the privileged group
+- Disparate Impact is 0.945, within acceptable range (0.8-1.25)
+Model Accuracy (mitigator file): 0.7600
+
+🚀 Selected Bias Mitigation Technique: disparate_impact_remover
+
+Applying disparate_impact_remover...
+
+
+Applying Disparate Impact Remover...
+Model Accuracy (mitigator file): 0.7650
+
+✅ Mitigated Model Accuracy: 0.7650
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/german.csv_disparate_impact_remover_20250410_000433/'
+{'statistical_parity_difference': np.float64(0.07480130902290782), 'disparate_impact': np.float64(0.9446577427276815), 'positive_rate_privileged': np.float64(1.3516129032258064), 'positive_rate_unprivileged': np.float64(1.2768115942028986), 'Equalized Odds': np.float64(0.2204984557925734), 'Equalized Opportunity': np.float64(0.10084033613445376), 'Predictive Parity': np.float64(0.0)}
+JSON SAVE PATH =  Mitigated_Model\german.csv_disparate_impact_remover_20250410_000433\results.json
+✅ Results saved to Mitigated_Model\german.csv_disparate_impact_remover_20250410_000433\results.json
+2025-04-10 00:05:17.254707: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-10 00:05:21.084655: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 4 numerical columns
+INFO:data_preprocessor:Detected 4 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (3722, 8)
+Testing set shape: (931, 8)
+🔍 Using 'gender' as the sensitive attribute (from config)
+Using 'gender' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 1875
+Unprivileged group (0): 2778
+
+Positive outcomes:
+Privileged group positive outcomes: 884
+Unprivileged group positive outcomes: 716
+
+Probabilities:
+P(Y=1|privileged): 0.471
+P(Y=1|unprivileged): 0.258
+
+Calculated metrics:
+statistical_parity_difference: 0.214
+disparate_impact: 0.547
+positive_rate_privileged: 0.471
+positive_rate_unprivileged: 0.258
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 47.1%
+- Positive outcome rate for unprivileged group: 25.8%
+- Statistical Parity Difference is 0.214, indicating bias favoring the privileged group
+- Disparate Impact is 0.547, indicating significant bias against unprivileged group
+Model Accuracy (mitigator file): 0.7057
+
+🚀 Selected Bias Mitigation Technique: prejudice_remover
+
+Applying prejudice_remover...
+
+
+Applying Prejudice Remover...
+
+✅ Mitigated Model Accuracy: 0.7465
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/Employee.csv_prejudice_remover_20250410_000615/'
+{'statistical_parity_difference': np.float64(0.21372728581713463), 'disparate_impact': np.float64(0.5466757229557382), 'positive_rate_privileged': np.float64(0.47146666666666665), 'positive_rate_unprivileged': np.float64(0.257739380849532), 'Equalized Odds': np.float64(0.8778041592437447), 'Equalized Opportunity': np.float64(0.5448158914728682), 'Predictive Parity': np.float64(0.1539753639417693)}
+JSON SAVE PATH =  Mitigated_Model\Employee.csv_prejudice_remover_20250410_000615\results.json
+✅ Results saved to Mitigated_Model\Employee.csv_prejudice_remover_20250410_000615\results.json
+2025-04-12 10:26:37.672168: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-12 10:26:46.904697: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 7 numerical columns
+INFO:data_preprocessor:Detected 13 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but LogisticRegression was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (800, 20)
+Testing set shape: (200, 20)
+🔍 Using 'a9' as the sensitive attribute (from config)
+Using 'a9' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 310
+Unprivileged group (0): 690
+
+Positive outcomes:
+Privileged group positive outcomes: 419
+Unprivileged group positive outcomes: 881
+
+Probabilities:
+P(Y=1|privileged): 1.352
+P(Y=1|unprivileged): 1.277
+
+Calculated metrics:
+statistical_parity_difference: 0.075
+disparate_impact: 0.945
+positive_rate_privileged: 1.352
+positive_rate_unprivileged: 1.277
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 135.2%
+- Positive outcome rate for unprivileged group: 127.7%
+- Statistical Parity Difference is 0.075, indicating bias favoring the privileged group
+- Disparate Impact is 0.945, within acceptable range (0.8-1.25)
+Model Accuracy (mitigator file): 0.7600
+
+🚀 Selected Bias Mitigation Technique: disparate_impact_remover
+
+Applying disparate_impact_remover...
+
+
+Applying Disparate Impact Remover...
+Model Accuracy (mitigator file): 0.7650
+
+✅ Mitigated Model Accuracy: 0.7650
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/german.csv_disparate_impact_remover_20250412_102731/'
+{'statistical_parity_difference': np.float64(0.07480130902290782), 'disparate_impact': np.float64(0.9446577427276815), 'positive_rate_privileged': np.float64(1.3516129032258064), 'positive_rate_unprivileged': np.float64(1.2768115942028986), 'Equalized Odds': np.float64(0.2204984557925734), 'Equalized Opportunity': np.float64(0.10084033613445376), 'Predictive Parity': np.float64(0.0)}
+JSON SAVE PATH =  Mitigated_Model\german.csv_disparate_impact_remover_20250412_102731\results.json
+✅ Results saved to Mitigated_Model\german.csv_disparate_impact_remover_20250412_102731\results.json
+2025-04-15 18:04:54.327117: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-15 18:05:07.688709: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 7 numerical columns
+INFO:data_preprocessor:Detected 13 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but LogisticRegression was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (800, 20)
+Testing set shape: (200, 20)
+🔍 Using 'a9' as the sensitive attribute (from config)
+Using 'a9' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 310
+Unprivileged group (0): 690
+
+Positive outcomes:
+Privileged group positive outcomes: 419
+Unprivileged group positive outcomes: 881
+
+Probabilities:
+P(Y=1|privileged): 1.352
+P(Y=1|unprivileged): 1.277
+
+Calculated metrics:
+statistical_parity_difference: 0.075
+disparate_impact: 0.945
+positive_rate_privileged: 1.352
+positive_rate_unprivileged: 1.277
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 135.2%
+- Positive outcome rate for unprivileged group: 127.7%
+- Statistical Parity Difference is 0.075, indicating bias favoring the privileged group
+- Disparate Impact is 0.945, within acceptable range (0.8-1.25)
+Model Accuracy (mitigator file): 0.7600
+
+🚀 Selected Bias Mitigation Technique: disparate_impact_remover
+
+Applying disparate_impact_remover...
+
+
+Applying Disparate Impact Remover...
+Model Accuracy (mitigator file): 0.7650
+
+✅ Mitigated Model Accuracy: 0.7650
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/german.csv_disparate_impact_remover_20250415_180558/'
+{'statistical_parity_difference': np.float64(0.07480130902290782), 'disparate_impact': np.float64(0.9446577427276815), 'positive_rate_privileged': np.float64(1.3516129032258064), 'positive_rate_unprivileged': np.float64(1.2768115942028986), 'Equalized Odds': np.float64(0.2204984557925734), 'Equalized Opportunity': np.float64(0.10084033613445376), 'Predictive Parity': np.float64(0.0)}
+JSON SAVE PATH =  Mitigated_Model\german.csv_disparate_impact_remover_20250415_180558\results.json
+✅ Results saved to Mitigated_Model\german.csv_disparate_impact_remover_20250415_180558\results.json
+2025-04-15 18:08:22.895109: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-15 18:08:34.717541: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 4 numerical columns
+INFO:data_preprocessor:Detected 4 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (3722, 8)
+Testing set shape: (931, 8)
+🔍 Using 'gender' as the sensitive attribute (from config)
+Using 'gender' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 1875
+Unprivileged group (0): 2778
+
+Positive outcomes:
+Privileged group positive outcomes: 884
+Unprivileged group positive outcomes: 716
+
+Probabilities:
+P(Y=1|privileged): 0.471
+P(Y=1|unprivileged): 0.258
+
+Calculated metrics:
+statistical_parity_difference: 0.214
+disparate_impact: 0.547
+positive_rate_privileged: 0.471
+positive_rate_unprivileged: 0.258
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 47.1%
+- Positive outcome rate for unprivileged group: 25.8%
+- Statistical Parity Difference is 0.214, indicating bias favoring the privileged group
+- Disparate Impact is 0.547, indicating significant bias against unprivileged group
+Model Accuracy (mitigator file): 0.7057
+
+🚀 Selected Bias Mitigation Technique: prejudice_remover
+
+Applying prejudice_remover...
+
+
+Applying Prejudice Remover...
+
+✅ Mitigated Model Accuracy: 0.7465
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/Employee.csv_prejudice_remover_20250415_180935/'
+{'statistical_parity_difference': np.float64(0.21372728581713463), 'disparate_impact': np.float64(0.5466757229557382), 'positive_rate_privileged': np.float64(0.47146666666666665), 'positive_rate_unprivileged': np.float64(0.257739380849532), 'Equalized Odds': np.float64(0.8778041592437447), 'Equalized Opportunity': np.float64(0.5448158914728682), 'Predictive Parity': np.float64(0.1539753639417693)}
+JSON SAVE PATH =  Mitigated_Model\Employee.csv_prejudice_remover_20250415_180935\results.json
+✅ Results saved to Mitigated_Model\Employee.csv_prejudice_remover_20250415_180935\results.json
+2025-04-15 23:32:51.175853: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-15 23:32:57.608554: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 7 numerical columns
+INFO:data_preprocessor:Detected 13 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but LogisticRegression was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (800, 20)
+Testing set shape: (200, 20)
+🔍 Using 'a9' as the sensitive attribute (from config)
+Using 'a9' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 310
+Unprivileged group (0): 690
+
+Positive outcomes:
+Privileged group positive outcomes: 419
+Unprivileged group positive outcomes: 881
+
+Probabilities:
+P(Y=1|privileged): 1.352
+P(Y=1|unprivileged): 1.277
+
+Calculated metrics:
+statistical_parity_difference: 0.075
+disparate_impact: 0.945
+positive_rate_privileged: 1.352
+positive_rate_unprivileged: 1.277
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 135.2%
+- Positive outcome rate for unprivileged group: 127.7%
+- Statistical Parity Difference is 0.075, indicating bias favoring the privileged group
+- Disparate Impact is 0.945, within acceptable range (0.8-1.25)
+Model Accuracy (mitigator file): 0.7600
+
+🚀 Selected Bias Mitigation Technique: disparate_impact_remover
+
+Applying disparate_impact_remover...
+
+
+Applying Disparate Impact Remover...
+Model Accuracy (mitigator file): 0.7650
+
+✅ Mitigated Model Accuracy: 0.7650
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/german.csv_disparate_impact_remover_20250415_233326/'
+{'statistical_parity_difference': np.float64(0.07480130902290782), 'disparate_impact': np.float64(0.9446577427276815), 'positive_rate_privileged': np.float64(1.3516129032258064), 'positive_rate_unprivileged': np.float64(1.2768115942028986), 'Equalized Odds': np.float64(0.2204984557925734), 'Equalized Opportunity': np.float64(0.10084033613445376), 'Predictive Parity': np.float64(0.0)}
+JSON SAVE PATH =  Mitigated_Model\german.csv_disparate_impact_remover_20250415_233326\results.json
+✅ Results saved to Mitigated_Model\german.csv_disparate_impact_remover_20250415_233326\results.json
+2025-04-15 23:34:05.694159: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-04-15 23:34:13.632942: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 4 numerical columns
+INFO:data_preprocessor:Detected 4 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (3722, 8)
+Testing set shape: (931, 8)
+🔍 Using 'gender' as the sensitive attribute (from config)
+Using 'gender' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 1875
+Unprivileged group (0): 2778
+
+Positive outcomes:
+Privileged group positive outcomes: 884
+Unprivileged group positive outcomes: 716
+
+Probabilities:
+P(Y=1|privileged): 0.471
+P(Y=1|unprivileged): 0.258
+
+Calculated metrics:
+statistical_parity_difference: 0.214
+disparate_impact: 0.547
+positive_rate_privileged: 0.471
+positive_rate_unprivileged: 0.258
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 47.1%
+- Positive outcome rate for unprivileged group: 25.8%
+- Statistical Parity Difference is 0.214, indicating bias favoring the privileged group
+- Disparate Impact is 0.547, indicating significant bias against unprivileged group
+Model Accuracy (mitigator file): 0.7057
+
+🚀 Selected Bias Mitigation Technique: prejudice_remover
+
+Applying prejudice_remover...
+
+
+Applying Prejudice Remover...
+
+✅ Mitigated Model Accuracy: 0.7465
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/Employee.csv_prejudice_remover_20250415_233441/'
+{'statistical_parity_difference': np.float64(0.21372728581713463), 'disparate_impact': np.float64(0.5466757229557382), 'positive_rate_privileged': np.float64(0.47146666666666665), 'positive_rate_unprivileged': np.float64(0.257739380849532), 'Equalized Odds': np.float64(0.8778041592437447), 'Equalized Opportunity': np.float64(0.5448158914728682), 'Predictive Parity': np.float64(0.1539753639417693)}
+JSON SAVE PATH =  Mitigated_Model\Employee.csv_prejudice_remover_20250415_233441\results.json
+✅ Results saved to Mitigated_Model\Employee.csv_prejudice_remover_20250415_233441\results.json
+2025-05-02 18:09:32.711527: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 18:09:41.609618: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 7 numerical columns
+INFO:data_preprocessor:Detected 13 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but LogisticRegression was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (800, 20)
+Testing set shape: (200, 20)
+🔍 Using 'a9' as the sensitive attribute (from config)
+Using 'a9' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 310
+Unprivileged group (0): 690
+
+Positive outcomes:
+Privileged group positive outcomes: 419
+Unprivileged group positive outcomes: 881
+
+Probabilities:
+P(Y=1|privileged): 1.352
+P(Y=1|unprivileged): 1.277
+
+Calculated metrics:
+statistical_parity_difference: 0.075
+disparate_impact: 0.945
+positive_rate_privileged: 1.352
+positive_rate_unprivileged: 1.277
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 135.2%
+- Positive outcome rate for unprivileged group: 127.7%
+- Statistical Parity Difference is 0.075, indicating bias favoring the privileged group
+- Disparate Impact is 0.945, within acceptable range (0.8-1.25)
+Model Accuracy (mitigator file): 0.7600
+
+🚀 Selected Bias Mitigation Technique: disparate_impact_remover
+
+Applying disparate_impact_remover...
+
+
+Applying Disparate Impact Remover...
+Model Accuracy (mitigator file): 0.7650
+
+✅ Mitigated Model Accuracy: 0.7650
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/german.csv_disparate_impact_remover_20250502_181015/'
+{'statistical_parity_difference': np.float64(0.07480130902290782), 'disparate_impact': np.float64(0.9446577427276815), 'positive_rate_privileged': np.float64(1.3516129032258064), 'positive_rate_unprivileged': np.float64(1.2768115942028986), 'Equalized Odds': np.float64(0.2204984557925734), 'Equalized Opportunity': np.float64(0.10084033613445376), 'Predictive Parity': np.float64(0.0)}
+JSON SAVE PATH =  Mitigated_Model\german.csv_disparate_impact_remover_20250502_181015\results.json
+✅ Results saved to Mitigated_Model\german.csv_disparate_impact_remover_20250502_181015\results.json
+2025-05-02 18:11:04.030169: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-05-02 18:11:08.606666: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:37: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  vect_normalized_discounted_cumulative_gain = vmap(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\inFairness\utils\ndcg.py:48: FutureWarning: We've integrated functorch into PyTorch. As the final step of the integration, `functorch.vmap` is deprecated as of PyTorch 2.0 and will be deleted in a future version of PyTorch >= 2.3. Please use `torch.vmap` instead; see the PyTorch 2.0 release notes and/or the `torch.func` migration guide for more details https://pytorch.org/docs/main/func.migrating.html
+  monte_carlo_vect_ndcg = vmap(vect_normalized_discounted_cumulative_gain, in_dims=(0,))
+WARNING:tensorflow:From C:\xampp\htdocs\Project\BiasX\code\bias_mitigator.py:11: The name tf.disable_eager_execution is deprecated. Please use tf.compat.v1.disable_eager_execution instead.
+
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LabelEncoder from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\base.py:380: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.0 when using version 1.6.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:data_preprocessor:Starting data preprocessing pipeline...
+INFO:data_preprocessor:Detected 4 numerical columns
+INFO:data_preprocessor:Detected 4 categorical columns
+INFO:data_preprocessor:Handled missing values
+INFO:data_preprocessor:Handled outliers using iqr method
+INFO:data_preprocessor:Encoded categorical variables
+INFO:data_preprocessor:Scaled numerical features
+INFO:data_preprocessor:Completed data preprocessing pipeline
+C:\Users\Tejas\anaconda3\envs\llm-from-scratch-1\Lib\site-packages\sklearn\utils\validation.py:2732: UserWarning: X has feature names, but StandardScaler was fitted without feature names
+  warnings.warn(
+Data preprocessing completed successfully!
+Training set shape: (3722, 8)
+Testing set shape: (931, 8)
+🔍 Using 'gender' as the sensitive attribute (from config)
+Using 'gender' as the sensitive attribute
+
+Group sizes:
+Privileged group (1): 2778
+Unprivileged group (0): 1875
+
+Positive outcomes:
+Privileged group positive outcomes: 716
+Unprivileged group positive outcomes: 884
+
+Probabilities:
+P(Y=1|privileged): 0.258
+P(Y=1|unprivileged): 0.471
+
+Calculated metrics:
+statistical_parity_difference: -0.214
+disparate_impact: 1.829
+positive_rate_privileged: 0.258
+positive_rate_unprivileged: 0.471
+
+Bias Detection Results (Entire Dataset):
+
+Detailed Metrics Analysis:
+- Positive outcome rate for privileged group: 25.8%
+- Positive outcome rate for unprivileged group: 47.1%
+- Statistical Parity Difference is -0.214, indicating bias favoring the unprivileged group
+- Disparate Impact is 1.829, indicating significant bias against privileged group
+Model Accuracy (mitigator file): 0.7057
+
+🚀 Selected Bias Mitigation Technique: prejudice_remover
+
+Applying prejudice_remover...
+
+
+Applying Prejudice Remover...
+
+✅ Mitigated Model Accuracy: 0.7465
+🔍 Type of model before saving: <class 'sklearn.linear_model._logistic.LogisticRegression'>
+✅ Mitigated dataset and model saved in 'Mitigated_Model/Employee.csv_prejudice_remover_20250502_181201/'
+{'statistical_parity_difference': np.float64(-0.21372728581713463), 'disparate_impact': np.float64(1.8292379888268158), 'positive_rate_privileged': np.float64(0.257739380849532), 'positive_rate_unprivileged': np.float64(0.47146666666666665), 'Equalized Odds': np.float64(0.8778041592437447), 'Equalized Opportunity': np.float64(0.5448158914728682), 'Predictive Parity': np.float64(0.1539753639417693)}
+JSON SAVE PATH =  Mitigated_Model\Employee.csv_prejudice_remover_20250502_181201\results.json
+✅ Results saved to Mitigated_Model\Employee.csv_prejudice_remover_20250502_181201\results.json

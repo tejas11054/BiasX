@@ -14,4 +14,6 @@ if (isset($_SESSION['user_id'])) {
 // Return JSON response
 header('Content-Type: application/json');
 echo json_encode(["user_id" => $user_id]);
+
+
 ?>

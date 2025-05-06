@@ -225,7 +225,7 @@ header {
 
 .feature {
     display: flex;
-    width: 600px;
+    width: 100%;
     align-items: center;
     margin-bottom: 20px; /* Reduced margin */
     padding: 15px; /* Reduced padding */
@@ -441,3 +441,14 @@ header {
     z-index: 1; /* Lower than dropdown to allow it to overlap */
   }
   
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+

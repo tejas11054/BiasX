@@ -158,3 +158,97 @@ body {
 .hide {
     display: none;
 }
+
+
+
+/* Tablet view (768px and below) */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 95%;
+        height: 320px;
+    }
+
+    .backbox {
+        height: 75%;
+    }
+
+    .frontbox {
+        width: 45%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    .loginMsg,
+    .signupMsg {
+        font-size: 16px;
+    }
+
+    .loginMsg .title,
+    .signupMsg .title {
+        font-size: 20px;
+    }
+
+    .login input,
+    .signup input {
+        height: 35px;
+        font-size: 13px;
+    }
+
+    .login button,
+    .signup button {
+        font-size: 14px;
+        padding: 8px;
+        bottom: 20px;
+    }
+
+    .textcontent {
+        margin-top: 50px;
+    }
+}
+
+/* Mobile view (480px and below) */
+@media screen and (max-width: 480px) {
+    .container {
+        width: 98%;
+        height: 260px;
+    }
+
+    .backbox {
+        height: 70%;
+    }
+
+    .frontbox {
+        width: 50%;
+        margin-left: 1%;
+        margin-right: 1%;
+        border-radius: 12px;
+    }
+
+    .loginMsg,
+    .signupMsg {
+        font-size: 13px;
+    }
+
+    .loginMsg .title,
+    .signupMsg .title {
+        font-size: 17px;
+    }
+
+    .login input,
+    .signup input {
+        height: 30px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
+
+    .login button,
+    .signup button {
+        font-size: 12px;
+        padding: 7px;
+        bottom: 15px;
+    }
+
+    .textcontent {
+        margin-top: 35px;
+    }
+}

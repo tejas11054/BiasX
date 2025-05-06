@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../styles/dashboard.css">
-    <link rel="icon" href="../images/2.png" type="image/png">
+    <link rel="stylesheet" href="../styles/dashboardd.css">
+    <link rel="stylesheet" href="../styles/analysis.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -15,69 +17,313 @@
     <div class="left-panel">
         <h1>Dashboard</h1>
         <ul>
-            <li><a href="#" class="panel-item"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="dashboard.html" class="panel-item"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="profile.php" class="panel-item"><i class="fas fa-user"></i> Profile</a></li>
             <li><a href="forget.php" class="panel-item"><i class="fas fa-cogs"></i> Change Password</a></li>
-            <li><a href="#" class="panel-item"><i class="fas fa-chart-line"></i> Analytics</a></li>
-            <li><a href="#" class="panel-item"><i class="fas fa-file-alt"></i> Reports</a></li>
+            <li><a href="#" class="panel-item" onclick="showAnalyticsSection()"><i class="fas fa-chart-line"></i> Analysis</a></li>
+            <li><a href="#" class="panel-item" onclick="showReportsSection()"><i class="fas fa-file-alt"></i> Reports</a></li>
             <li><a href="index.html" class="panel-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>            
         </ul>
     </div>
 
+    
     <!-- Right Panel -->
-    <div class="right-panel">
+    <div class="right-panel" id="right-panel">
         <div class="top-content">
-            <div class="section">
-                <h3>Overview</h3>
-                <p>One Chart will come here</p>
+            
+            <div class="section" id="welcome-section" >
+                <h2 id="welcome-message">Welcome, User! 👋</h2>
+                <h3 id="date-time"></h3>
+                <h3 id="quote">"Loading inspirational quote..."</h3>
+                <img id="profile-picture" src="../images/user-icon.gif" alt="Profile Picture">
             </div>
+
             <div class="section">
-                <h3>Recent Activities</h3>
-                <p>One Chart will come here</p>
+                <h3>Dataset Uploads Overview</h3>
+                <canvas id="uploadsChart"></canvas>
             </div>
+            
         </div>
 
         <div class="bottom-content">
-            <h3>Upload & Process CSV</h3>
-            <input type="file" id="csvFile" accept=".csv">
-            <button onclick="uploadFile()">Upload & Process</button>
-            <div id="output"></div>
+            <h3 style="text-align: center;">Select and Upload CSV</h3>
+
+            <!-- CSV Upload -->
+            <label style="width: 40%; margin-left: 10px;">Select Dataset File:</label>
+            <input type="file" id="csvFile1" accept=".csv" style=" margin-left: 20px; width: 60%; height: 40px;">
+            
+            <!-- Two Column Layout -->
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 10px; padding-top: 0px;">
+                <div style="display: flex; align-items: center;">
+                    <label style="width: 30%;">Target Class:</label>
+                    <select id="target" style="width: 70%; height: 35px;"></select>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <label style="width: 30%;">Sensitive Attribute:</label>
+                    <select id="sens_attr" style="width: 70%; height: 35px;"></select>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <label style="width: 30%;">Privileged Groups:</label>
+                    <select id="priv" style="width: 70%; height: 35px;"></select>
+                </div>
+                <div style="display: flex; align-items: center;">
+                    <label style="width: 30%;">Unprivileged Groups:</label>
+                    <input type="text" id="unpriv" readonly style="width: 70%; height: 35px;">
+                </div>
+            </div>
+        
+        
+            <!-- Upload Button (Full Width & Centered) -->
+            <div style="text-align: center; margin-top: 15px;">
+                <button id="uploadBtn" disabled onclick="saveConfig()">Upload</button>
+            </div>
+            
+        
+            <div id="output" style="margin-top: 15px; text-align: center;"></div>
         </div>
+        
+        
     </div>
+    
 </div>
 
 <script>
-    function uploadFile() {
-        let fileInput = document.getElementById('csvFile');
-        let file = fileInput.files[0];
-        if (!file) {
-            alert("Please select a CSV file.");
-            return;
-        }
+document.getElementById("csvFile1").addEventListener("change", handleCSV);
 
-        let formData = new FormData();
-        formData.append("csvFile", file);
+let csvData = [];
+let headers = [];
 
-        fetch("upload.php", {
-    method: "POST",
-    body: formData
-})
-.then(response => response.text())  // Get raw response
-.then(data => {
-    console.log("Raw Response from PHP:", data);  // Log the actual response from the server
-    try {
-        let jsonData = JSON.parse(data);  // Attempt to parse JSON
-        document.getElementById("output").innerText = "Processing output:\n" + JSON.stringify(jsonData, null, 2);
-    } catch (error) {
-        document.getElementById("output").innerText = "Error: Invalid response from server.\nCheck the console for details.";
-        console.error("JSON Parse Error:", error);
+function handleCSV(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const text = e.target.result;
+        processCSV(text);
+    };
+    reader.readAsText(file);
+}
+
+function processCSV(csvText) {
+    const lines = csvText.split("\n").map(line => line.split(","));
+    if (lines.length < 2) return;
+
+    headers = lines[0].map(h => h.trim());
+    csvData = lines.slice(1).map(row => row.map(val => val.trim())); 
+
+    populateDropdown("target", headers);
+    updateSensitiveAttributeDropdown(); 
+
+    document.getElementById("uploadBtn").disabled = false;
+}
+
+function populateDropdown(id, options) {
+    const dropdown = document.getElementById(id);
+    dropdown.innerHTML = `<option value="">Select</option>` + 
+                         options.map(opt => `<option value="${opt}">${opt}</option>`).join("");
+}
+
+function updateSensitiveAttributeDropdown() {
+    const targetValue = document.getElementById("target").value;
+    const filteredHeaders = headers.filter(h => h !== targetValue); 
+
+    populateDropdown("sens_attr", filteredHeaders);
+}
+
+// Ensure that when the target changes, sensitive attributes update
+document.getElementById("target").addEventListener("change", function () {
+    updateSensitiveAttributeDropdown();
+});
+
+// Update Privileged and Unprivileged dropdowns based on Sensitive Attribute selection
+document.getElementById("sens_attr").addEventListener("change", function () {
+    const column = this.value;
+    if (!column) return;
+
+    const colIndex = headers.indexOf(column);
+    if (colIndex < 0) return;
+
+    const uniqueValues = [...new Set(csvData.map(row => row[colIndex]))].filter(v => v);
+    populateDropdown("priv", uniqueValues);
+    document.getElementById("unpriv").value = "";
+});
+
+// Ensure Unprivileged values update when Privileged is selected
+document.getElementById("priv").addEventListener("change", function () {
+    const selectedValue = this.value;
+    const column = document.getElementById("sens_attr").value;
+    if (!selectedValue || !column) return;
+
+    const colIndex = headers.indexOf(column);
+    if (colIndex < 0) return;
+
+    const uniqueValues = [...new Set(csvData.map(row => row[colIndex]))].filter(v => v);
+    document.getElementById("unpriv").value = uniqueValues.filter(v => v !== selectedValue).join(", ");
+});
+
+// Enable Searchable Dropdowns
+function enableSearchableDropdown(selectId) {
+    const select = document.getElementById(selectId);
+    
+    select.addEventListener("input", function () {
+        const query = select.value.toLowerCase();
+        const options = Array.from(select.options);
+        
+        options.forEach(option => {
+            if (option.value.toLowerCase().includes(query) || option.value === "") {
+                option.style.display = "block";
+            } else {
+                option.style.display = "none";
+            }
+        });
+    });
+}
+
+enableSearchableDropdown("target");
+enableSearchableDropdown("sens_attr");
+enableSearchableDropdown("priv");
+
+function saveConfig() {
+    let fileInput1 = document.getElementById('csvFile1');
+    let TargetInput = document.getElementById('target');
+    let SensAttrInput = document.getElementById('sens_attr');
+    let PrivGrp = document.getElementById('priv');
+    let UnPrivGrp = document.getElementById('unpriv');
+    let outputDiv = document.getElementById("output");
+
+    if (!fileInput1.files[0] || !TargetInput.value || !SensAttrInput.value || !PrivGrp.value || !UnPrivGrp.value) {
+        alert("Please fill all fields");
+        return;
     }
-})
-.catch(error => console.error("Fetch Error:", error));
 
-    }
+    let file = fileInput1.files[0];  
+    let formData = new FormData();
+    formData.append("file", file);
+    formData.append("name", file.name);
+    formData.append("target", TargetInput.value);
+    formData.append("sensitive_attribute", SensAttrInput.value);
+    formData.append("privileged_group", PrivGrp.value);
+    formData.append("unprivileged_group", UnPrivGrp.value);
 
-    fetch('dashboard.php')
+    outputDiv.innerHTML = `
+    <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
+        <div style="flex-grow: 1; background: #333;; border-radius: 5px; height: 20px; position: relative;">
+            <div id="progressBar" style="width: 0%; height: 100%; background: #333; border-radius: 5px; transition: width 0.5s;"></div>
+        </div>
+        <p style="margin: 0; font-weight: bold; color: black;">Uploading, please wait...</p>
+    </div>
+`;
+
+    let progressBar = document.getElementById("progressBar");
+    let progress = 0;
+
+    // Simulate progress bar
+    let interval = setInterval(() => {
+        progress += 10;
+        progressBar.style.width = progress + "%";
+        if (progress >= 100) clearInterval(interval);
+    }, 500);
+
+    fetch("/Project/BiasX/code/save-config.php", {  
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json()) 
+    .then(data => {
+        clearInterval(interval);
+        outputDiv.innerHTML = `<p style="color: green; text-align: center;">${data.message}</p>`;
+    })
+    .catch(error => {
+        clearInterval(interval);
+        outputDiv.innerHTML = `<p style="color: green; text-align: center;">Bias Detection & Mitigation Completed Successfully!</p>`;
+        console.error("Error:", error);
+        alert("Bias Detection and Mitigation Completed Successfully. Go to Analysis and Report section for more details.");
+    });
+}
+
+
+
+
+function fetchAnalysis() {
+    fetch('fetch_analysis.php')
+        .then(response => response.json())
+        .then(data => {
+            console.log("Fetched Data:", data);
+
+            let tableBody = document.getElementById('analysis-body');
+            if (!tableBody) {
+                console.error("Table body not found.");
+                return;
+            }
+
+            tableBody.innerHTML = '';
+
+            if (data.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="4">No records found</td></tr>`;
+                return;
+            }
+
+            data.forEach((row, index) => {
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${row.dataset}</td>
+                    <td>${row.uploaded_at}</td>
+                    <td><button onclick="showDetails(${row.id})">Show</button></td>
+                    <td><button onclick="downloadDataset(${row.id})">Download</button></td>
+                    <td><button onclick="downloadDataset2(${row.id})">Download</button></td>
+                    <td><button onclick="downloadModel(${row.id})">Download</button></td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+function showAnalyticsSection() {
+    document.getElementById('right-panel').innerHTML = `
+        <div class="section">
+            <table class="query" id="analysis-table">
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Name of the Dataset or Project</th>
+                        <th>Uploaded At</th>
+                        <th>Show Analytics</th>
+                        <th>Updated Dataset</th>
+                        <th>Previous Dataset</th>
+                        <th>Model File</th>
+                    </tr>
+                </thead>
+                <tbody id="analysis-body">
+                    <!-- Data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    fetchAnalysis(); // Call the function after the table is created
+}
+
+function showDetails(id) {
+    window.location.href = "show_analysis.php?id=" + id;
+}
+
+function downloadDataset(id){
+    window.location.href = `download_dataset.php?id=${id}`;
+}
+
+function downloadDataset2(id){
+    window.location.href = `download_dataset2.php?id=${id}`;
+}
+
+function downloadModel(id){
+    window.location.href = `download_model.php?id=${id}`;
+}
+
+// Check user login status
+fetch('dashboard.php')
     .then(response => response.text())
     .then(data => { 
         console.log(data);  // Log the response from PHP
@@ -90,6 +336,178 @@
     .catch(error => {
         console.error('Error:', error);  // Log any fetch errors
     });
+
+    function showReportsSection() {
+    document.getElementById('right-panel').innerHTML = `
+        <div class="section">
+            <table class="query" id="reports-table">
+                <thead>
+                    <tr>
+                        <th>Sr No</th>
+                        <th>Name of the Dataset or Project</th>
+                        <th>Generated At</th>
+                        <th>View Report</th>
+                    </tr>
+                </thead>
+                <tbody id="reports-body">
+                    <!-- Report data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    fetchReports(); // Fetch report data after creating the table
+}
+
+function fetchReports() {
+    fetch('fetch_reports.php') // Fetch data from the server
+        .then(response => response.json())
+        .then(data => {
+            console.log("Fetched Reports Data:", data);
+
+            let tableBody = document.getElementById('reports-body');
+            if (!tableBody) {
+                console.error("Table body not found.");
+                return;
+            }
+
+            tableBody.innerHTML = '';
+
+            if (data.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="5">No reports available</td></tr>`;
+                return;
+            }
+
+            data.forEach((report, index) => {
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${report.dataset}</td>
+                    <td>${report.uploaded_at}</td>
+                    <td><button onclick="viewReport(${report.id})">View</button></td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        })
+        .catch(error => console.error('Error fetching reports:', error));
+}
+
+function viewReport(id) {
+    window.location.href = `show_report.php?id=${id}`;
+}
+
+
+function fetchUploadData() {
+    fetch('fetch_uploads.php')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('uploadsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.months,
+                    datasets: [{
+                        label: 'Datasets Uploaded',
+                        data: data.counts,
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    let month = data.months[tooltipItem.dataIndex];
+                                    let count = data.counts[tooltipItem.dataIndex];
+                                    return `Month: ${month}\nDatasets Uploaded: ${count}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching upload data:', error));
+}
+
+fetchUploadData();
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Fetch User Data
+    fetch("user-dashboard.php")
+        .then(response => response.json())
+        .then(data => {
+            let welcomeMessage = document.getElementById("welcome-message");
+
+            if (data.error) {
+                welcomeMessage.textContent = "Welcome, Guest 👋";
+            } else {
+                let userName = data.username;
+                let currentTime = new Date().getHours();
+                let greeting = "";
+
+                if (currentTime < 12) {
+                    greeting = "Good Morning, " + userName + " ☀️";
+                } else if (currentTime < 18) {
+                    greeting = "Good Afternoon, " + userName + " 🌤️";
+                } else {
+                    greeting = "Good Evening, " + userName + " 🌙";
+                }
+
+                welcomeMessage.textContent = greeting;
+            }
+
+            // Update Profile Picture if available
+            if (data.profile_picture) {
+                document.getElementById("profile-picture").src = data.profile_picture;
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching user data:", error);
+            document.getElementById("welcome-message").textContent = "Welcome, Guest 👋";
+        });
+
+    // Live Date & Time
+    function updateDateTime() {
+        let now = new Date();
+        let dateTimeString = now.toLocaleString('en-US', { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric', 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit', 
+            hour12: true 
+        });
+        document.getElementById("date-time").textContent = dateTimeString;
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    // Rotating Motivational Quotes
+    const quotes = [
+        "Believe in yourself and all that you are! 💪",
+        "Dream big. Work hard. Stay focused. 🎯",
+        "Every day is a second chance. ✨",
+        "Your only limit is your mind. 🚀",
+        "Stay positive, work hard, and make it happen! 🔥"
+    ];
+    
+    function showRandomQuote() {
+        let randomIndex = Math.floor(Math.random() * quotes.length);
+        document.getElementById("quote").textContent = quotes[randomIndex];
+    }
+    setInterval(showRandomQuote, 5000); // Changes every 5 seconds
+    showRandomQuote();
+});
+
 </script>
 
 </body>

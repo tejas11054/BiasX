@@ -1,38 +1,35 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll("nav ul li a");
+    const fadeElements = document.querySelectorAll('.fade-in');
+    console.log("Found elements:", fadeElements);
 
-    // Intersection Observer to trigger animations on scroll
-    const observer = new IntersectionObserver(entries => {
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add("animate");
+                entry.target.classList.add('show');
+            } else {
+                entry.target.classList.remove('show');
             }
         });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.5 }); // Change to 0.5 or other values to adjust when the animation triggers
+    
 
-    sections.forEach(section => observer.observe(section));
+    fadeElements.forEach(element => observer.observe(element));
+});
 
-    // Smooth Scroll and Reapply Animation on Click
-    navLinks.forEach(link => {
-        link.addEventListener("click", function (event) {
-            event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".fade-in, .about-section, .hero-section, .feature");
 
-            const targetId = this.getAttribute("href").substring(1);
-            const targetSection = document.getElementById(targetId);
-
-            if (targetSection) {
-                window.scrollTo({
-                    top: targetSection.offsetTop - 50, 
-                    behavior: "smooth"
-                });
-
-                // Remove and reapply animation for the target section
-                targetSection.classList.remove("animate");
-                setTimeout(() => {
-                    targetSection.classList.add("animate");
-                }, 100);
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target); // Stop observing once shown
             }
         });
+    }, { threshold: 0.2 }); // Adjust threshold to control when animations trigger
+
+    elements.forEach(el => {
+        el.classList.add("hidden"); // Hide initially
+        observer.observe(el);
     });
 });

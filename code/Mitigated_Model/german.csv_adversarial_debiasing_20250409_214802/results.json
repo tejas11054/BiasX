@@ -1,0 +1,20 @@
+[
+    {
+        "dataset": "german.csv",
+        "rows": 1000,
+        "columns": 21,
+        "Attribute_with_bias": "a9",
+        "mitigation_technique_used": "adversarial_debiasing",
+        "model_trained": "Logistic Regression",
+        "metrics": {
+            "statistical_parity": -0.020897615708274895,
+            "disparate impact": 1.9254658385093169,
+            "equalized_odds": 0.0,
+            "equalized_opportunity": 0.0,
+            "predictive_parity": 0
+        },
+        "Previous_accuracy": 0.95,
+        "New_accuracy": 0.945,
+        "Timestamp": "09-04-2025 21:48:03"
+    }
+]

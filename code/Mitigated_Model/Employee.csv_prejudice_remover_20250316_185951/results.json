@@ -1,0 +1,20 @@
+[
+    {
+        "dataset": "Employee.csv",
+        "rows": 4653,
+        "columns": 9,
+        "Attribute_with_bias": "gender",
+        "mitigation_technique_used": "prejudice_remover",
+        "model_trained": "Logistic Regression",
+        "metrics": {
+            "statistical_parity": -0.21372728581713463,
+            "disparate impact": 1.8292379888268158,
+            "equalized_odds": 0.8778041592437447,
+            "equalized_opportunity": 0.5448158914728682,
+            "predictive_parity": 0.1539753639417693
+        },
+        "Previous_accuracy": 0.7056928034371643,
+        "New_accuracy": 0.7465091299677766,
+        "Timestamp": "16-03-2025 18:59:51"
+    }
+]

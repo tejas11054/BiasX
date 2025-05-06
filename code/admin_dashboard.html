@@ -4,36 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="../styles/admin-dashboard.css">
-    <link rel="icon" href="../images/2.png" type="image/png">
+    <link rel="stylesheet" href="../styles/admin-dashboardd.css">
+    <link rel="icon" href="../images/logo.png" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Analysis Table Styles */
+table.query {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    table-layout: auto;
+}
+
+table.query th, table.query td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+    height: 30px;
+    vertical-align: middle;
+}
+
+table.query th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+}
+
+table.query td {
+    color: #555;
+}
+
+table.query tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table.query tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* Column Widths */
+table.query th:nth-child(1), /* Sr No */
+table.query td:nth-child(1) {
+    width: 8%; 
+}
+
+table.query th:nth-child(2), /* Timestamp */
+table.query td:nth-child(2) {
+    width: 20%; 
+}
+
+table.query th:nth-child(3), /* Timestamp */
+table.query td:nth-child(3){
+    width: 35%;
+}
+
+
+table.query th:nth-child(4), /* Show Button */
+table.query td:nth-child(4),
+table.query th:nth-child(5), /* Download Button */
+table.query td:nth-child(5) {
+    width: 15%;
+}
+
+button, .send-answer-btn {
+    background-color: #0F4C75;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+    transition: all 0.3s ease-in-out;
+    width: 100px;
+}
+
+
+button:hover, .send-answer-btn:hover {
+    background-color: #3282B8;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+textarea.answer-text {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.1em;
+    resize: none;
+    box-sizing: border-box;
+}
+
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- Left Panel -->
-    <div class="left-panel">
-        <h1>Dashboard</h1>
-        <ul>
-            <li><a href="admin_dashboard.html" class="panel-item" id="homeBtn"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="#" class="panel-item" id="usersBtn"><i class="fas fa-user"></i> Users</a></li>
-            <li><a href="#" class="panel-item" id="queriesBtn"><i class="fas fa-comment"></i> Queries</a></li>
-            <li><a href="index.html" class="panel-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>            
-        </ul>
-    </div>
-
-    <!-- Right Panel -->
+    <div class="container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <h1>Dashboard</h1>
+            <ul>
+                <li><a href="admin_dashboard.html" class="panel-item" id="homeBtn"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#" class="panel-item" id="usersBtn"><i class="fas fa-user"></i> Users</a></li>
+                <li><a href="#" class="panel-item" id="queriesBtn"><i class="fas fa-comment"></i> Queries</a></li>
+                <li><a href="#" class="panel-item" id="analysisBtn" onclick="showAnalyticsSection()"><i class="fas fa-chart-line"></i> Analysis</a></li>
+                <li><a href="index.html" class="panel-item"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+    
+        <!-- Right Panel -->
     <div class="right-panel">
-        <div class="top-content">
-            <div class="section">
-                <h1>BiasX</h1>
-                <h3>X Out Bias, Embrace Fairness</h3>
+        <div class="top-content" id="top-content" style="display: flex; flex-direction: row; gap: 20px;">
+            <!-- Left Column: Pie Chart -->
+            <div class="section" style="flex: 1;">
+                <h2>Insights 1</h2>
+                <p>Number of files uploaded by users.</p>
+                <canvas id="uploadChart"></canvas>
             </div>
-            <!-- Here, the Users Table will be loaded -->
+            
+            <!-- Right Column: Option 4 Section -->
+            <div class="section" style="flex: 1;">
+                <h2>Insights 2</h2>
+                <p>Analysis of Active Users.</p>
+                
+                <p><strong>Active Users:</strong> <span id="activeUsersCount">0</span></p>
+                <p><strong>Inactive Users:</strong> <span id="inactiveUsersCount">0</span></p>
+            
+                <canvas id="uploadBarChart" style="height: 490px; width: 100%;"></canvas>
+            </div>
+            
         </div>
     </div>
 </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Event listener for the Users button
     document.getElementById('usersBtn').addEventListener('click', function() {
@@ -48,7 +154,84 @@
                 console.error("Error fetching user data: ", error);
             });
     });
-    
+
+        // Function to fetch and render pie chart
+        function fetchAndRenderChart() {
+        fetch('fetch_files_upload.php')
+            .then(response => response.json())
+            .then(data => {
+                const ctx = document.getElementById('uploadChart').getContext('2d');
+                const userNames = data.map(item => item.user_name);
+                const fileCounts = data.map(item => item.file_count);
+
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: userNames,
+                        datasets: [{
+                            data: fileCounts,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#FF9800'],
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching chart data:', error));
+    }
+
+    function fetchAndRenderBarChart() {
+    fetch('fetch_files_upload2.php')
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('uploadBarChart').getContext('2d');
+            const userNames = data.users.map(item => item.user_name);
+            const fileCounts = data.users.map(item => item.file_count);
+            const maxCount = Math.max(...fileCounts);
+            const suggestedMax = Math.ceil((maxCount + 2) / 5) * 5;
+
+            // Display active/inactive user counts
+            document.getElementById("activeUsersCount").textContent = data.active_users;
+            document.getElementById("inactiveUsersCount").textContent = data.inactive_users;
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: userNames,
+                    datasets: [{
+                        label: 'Number of Files Uploaded',
+                        data: fileCounts,
+                        backgroundColor: '#36A2EB',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: suggestedMax,
+                            ticks: {
+                                stepSize: Math.ceil(suggestedMax / 5)
+                            }
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching bar chart data:', error));
+}
+
+
+    // Fetch charts on page load
+    fetchAndRenderChart();
+    fetchAndRenderBarChart();
+     
     document.getElementById('queriesBtn').addEventListener('click', function() {
         fetch('get_queries.php')
             .then(response => response.text())
@@ -93,6 +276,69 @@
             })
             .catch(error => console.error("Error fetching queries:", error));
     });
+    function fetchAnalysis() {
+    fetch('fetch_analysis_admin.php')
+        .then(response => response.json())
+        .then(data => {
+            console.log("Fetched Data:", data);
+
+            let tableBody = document.getElementById('analysis-body');
+            if (!tableBody) {
+                console.error("Table body not found.");
+                return;
+            }
+
+            tableBody.innerHTML = '';
+
+            if (data.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="5">No records found</td></tr>`;
+                return;
+            }
+
+            data.forEach((row, index) => {
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${row.user_name}</td>  <!-- Display User Name -->
+                    <td>${row.dataset}</td>
+                    <td>${row.uploaded_at}</td>
+                    <td><button onclick="showDetails(${row.id})">Analysis</button></td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+
+function showAnalyticsSection() {
+    document.querySelector('.right-panel').innerHTML = `
+        <div class="section">
+            <table class="query" id="analysis-table">
+    <thead>
+        <tr>
+            <th>Sr No</th>
+            <th>User Name</th>  <!-- Added User Name -->
+            <th>Name of the Dataset or Project</th>
+            <th>Uploaded At</th>
+            <th>Show Analysis</th>
+        </tr>
+    </thead>
+    <tbody id="analysis-body">
+        <!-- Data will be inserted here -->
+    </tbody>
+</table>
+
+        </div>
+    `;
+
+    fetchAnalysis(); // Call the function after the table is created
+}
+
+
+function showDetails(id) {
+    window.location.href = "show_analysis.php?id=" + id;
+}
 
     </script>
     

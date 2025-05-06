@@ -1,0 +1,20 @@
+[
+    {
+        "dataset": "Employee.csv",
+        "rows": 4653,
+        "columns": 9,
+        "Attribute_with_bias": "everbenched",
+        "mitigation_technique_used": "adversarial_debiasing",
+        "model_trained": "Logistic Regression",
+        "metrics": {
+            "statistical_parity": -0.1227174103675494,
+            "disparate impact": 1.3704592829244533,
+            "equalized_odds": 0.4010978334346089,
+            "equalized_opportunity": 0.2941849816849817,
+            "predictive_parity": 0.11558839933073062
+        },
+        "Previous_accuracy": 0.7056928034371643,
+        "New_accuracy": 0.7819548872180451,
+        "Timestamp": "09-04-2025 22:37:06"
+    }
+]

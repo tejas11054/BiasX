@@ -1,0 +1,3 @@
+conda create --name llm-from-scratch-1 python=3.12.0
+conda activate llm-from-scratch-1
+pip install requirements.txt

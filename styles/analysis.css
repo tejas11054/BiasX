@@ -1,0 +1,95 @@
+/* Analysis Table Styles */
+table.query {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    table-layout: auto;
+}
+
+table.query th, table.query td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+    height: 30px;
+    vertical-align: middle;
+}
+
+table.query th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+}
+
+table.query td {
+    color: #555;
+}
+
+table.query tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table.query tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* Column Widths */
+table.query th:nth-child(1), /* Sr No */
+table.query td:nth-child(1) {
+    width: 8%; /* Smaller width */
+    text-align: center;
+}
+
+table.query th:nth-child(2), /* Timestamp */
+table.query td:nth-child(2) {
+    width: 30%; /* Equal width */
+    text-align: center;
+}
+
+table.query th:nth-child(3), /* Timestamp */
+table.query td:nth-child(3){
+    width: 15%;
+    text-align: center;
+}
+
+
+table.query th:nth-child(4), /* Show Button */
+table.query td:nth-child(4),
+table.query th:nth-child(5), /* Download Button */
+table.query td:nth-child(5),
+table.query th:nth-child(6), /* Download Button */
+table.query td:nth-child(6),
+table.query th:nth-child(7), /* Download Button */
+table.query td:nth-child(7) {
+    width: 12%;
+    text-align: center;
+}
+
+button, .send-answer-btn {
+    background-color: #0F4C75;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: white;
+    font-size: 1.1em;
+    transition: all 0.3s ease-in-out;
+    width: 100px;
+}
+
+button:hover, .send-answer-btn:hover {
+    background-color: #3282B8;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+textarea.answer-text {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.1em;
+    resize: none;
+    box-sizing: border-box;
+}
+

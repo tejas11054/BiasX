@@ -1,0 +1,346 @@
+/* General Body Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+/* Dashboard Layout */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Left Panel */
+.left-panel {
+    width: 250px;
+    background-color: #102A43;  /* Dark background for left panel */
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Title in Left Panel */
+.left-panel h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+}
+
+/* Styling for the List of Contents in Left Panel */
+.left-panel ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+    flex-grow: 1;
+}
+
+.left-panel ul li {
+    margin: 30px 0;
+}
+
+.panel-item {
+    display: block;
+    background-color: #0F4C75;  /* Dark blue background */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: white;  /* White text */
+    font-size: 1.1em;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Styling for the panel list */
+.panel-item {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    padding: 10px;
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Styling for the icons */
+.panel-item i {
+    font-size: 20px;  /* Set a uniform size for all icons */
+    margin-right: 15px;  /* Add spacing between the icon and the text */
+    color: #FF5733;  /* Orange color for icons */
+    width: 24px; /* Ensures icon width is the same for all */
+    height: 24px; /* Ensures icon height is the same for all */
+    text-align: center; /* Align icon properly */
+}
+
+/* Hover effect */
+.panel-item:hover i {
+    color: #BBE1FA;  /* Lighter blue icon color on hover */
+}
+
+/* Ensuring text doesn't stretch or look misaligned */
+.panel-item span {
+    white-space: nowrap; /* Prevent text from breaking into multiple lines */
+}
+
+.panel-item:hover {
+    background-color: #3282B8;  /* Light blue on hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Right Panel (Main Content) */
+.right-panel {
+    margin-left: 310px; /* Offset to make space for the left panel */
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #102A43;  /* Dark background for left panel */
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    height: 100%;
+    width: 100%;
+    margin-right: 20px;
+}
+
+.right-panel h1 {
+    font-size: 2.5em;
+    color: #333;  /* Keep the color as it was */
+    margin-bottom: 20px;
+}
+
+/* Right Panel Top Content */
+.right-panel .top-content {
+    display: flex;
+    justify-content: space-between;
+    height: 650px;
+}
+
+.right-panel .top-content .section {
+    flex: 1;
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.right-panel .top-content .section:last-child {
+    margin-right: 0;
+}
+
+/* General Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;  /* Keeps the table background white */
+    table-layout: auto;  /* Allows the table to adjust based on content */
+}
+
+table th, table td {
+    padding: 8px;  /* Added padding for better spacing */
+    text-align: left;
+    border: 1px solid #ddd;
+    height: 30px;  /* Ensures each row has a fixed height of 30px */
+    vertical-align: middle;  /* Centers the content vertically within the cells */
+}
+
+table th {
+    background-color: #f2f2f2;  /* Light gray background for header */
+    color: #333;  /* Dark text for header for contrast */
+    font-weight: bold;
+}
+
+table td {
+    color: #555;  /* Dark gray text for table data */
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;  /* Alternating row color for better readability */
+}
+
+table tr:hover {
+    background-color: #e0e0e0;  /* Light gray background on hover for interaction */
+}
+
+/* Set a smaller width for the first column */
+table td:nth-child(1), table th:nth-child(1) {
+    width: 7%;  /* Adjust width as needed */
+}
+
+
+/* Set the remaining columns to take up more space */
+table td:nth-child(n+2), table th:nth-child(n+2) {
+    width: auto;  /* Let other columns take up the remaining space */
+}
+
+/* Set a smaller width for the first column */
+table.query th:last-child, td:last-child {
+    width: 7%;  /* Adjust width as needed */
+}
+
+table.query td:nth-last-child(2) {
+    width: 350px; /* Adjust to desired width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+/* Optional: Add a tooltip to display the full text when hovered */
+table.query td:nth-last-child(2):hover {
+    overflow: visible;
+    white-space: normal;
+    background-color: #f9f9f9;
+}
+
+/* Optional: Add some spacing after the table if needed */
+.right-panel .top-content {
+    display: flex;
+    flex-direction: column;  /* Space between the table and other sections */
+    height: auto;  /* Ensures that the content in the right panel does not stretch */
+}
+
+.answer-btn, .send-answer-btn{
+    background-color: #0F4C75;  /* Dark blue background */
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: white;  /* White text */
+    font-size: 1.1em;
+    transition: all 0.3s ease-in-out;
+    width: 100px;
+}
+
+.answer-btn:hover, .send-answer-btn:hover{
+    background-color: #3282B8;  /* Light blue on hover */
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+textarea.answer-text {
+    width: 100%;                        
+    height: 100px;                     
+    padding: 10px;                       
+    border: 1px solid #ccc;              
+    border-radius: 4px;                
+    font-size: 1.1em;                  
+    resize: none;                    
+    box-sizing: border-box;              
+}
+
+.right-panel .section h1, h3{
+    text-align: center;
+}
+
+.right-panel .bottom-content{
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    height: 450px;
+    margin-bottom: 20px;
+}
+
+/* Responsive for Tablets (768px and below) */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        width: 100%;
+        height: auto;
+        position: relative;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px;
+        box-shadow: none;
+    }
+
+    .left-panel h1 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .left-panel ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .left-panel ul li {
+        margin: 5px;
+    }
+
+    .panel-item {
+        padding: 10px;
+        font-size: 0.95em;
+    }
+
+    .right-panel {
+        margin-left: 0;
+        margin-top: 0;
+        width: 100%;
+        padding: 10px;
+        box-shadow: none;
+    }
+
+    .right-panel h1 {
+        font-size: 2em;
+    }
+
+    .right-panel .top-content {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .right-panel .top-content .section {
+        margin-bottom: 15px;
+    }
+
+    .right-panel .bottom-content {
+        height: auto;
+    }
+}
+
+/* Responsive for Mobile (480px and below) */
+@media (max-width: 480px) {
+    .left-panel h1 {
+        font-size: 1.2em;
+    }
+
+    .panel-item {
+        font-size: 0.85em;
+        padding: 8px;
+    }
+
+    .right-panel h1 {
+        font-size: 1.5em;
+    }
+
+    .answer-btn, .send-answer-btn {
+        width: 100%;
+        font-size: 1em;
+    }
+
+    textarea.answer-text {
+        font-size: 1em;
+        height: 80px;
+    }
+
+    table td:nth-last-child(2) {
+        width: 100px;
+    }
+
+    table.query td:nth-last-child(2) {
+        white-space: normal;
+        overflow: visible;
+    }
+}
