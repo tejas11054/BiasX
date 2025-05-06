@@ -48,7 +48,7 @@ Ultimately, this work contributes to the broader goal of ensuring that AI techno
 
 - Upload custom datasets to analyze bias
 - Visual bias reports with fairness metrics
-- Chooses mitigation techniques based on dataset and bias type
+- Automatically chooses mitigation techniques based on dataset and bias type
 - Returns updated dataset and analysis report
 
 ---
