@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';  // SMTP server (Use 'smtp.office365.com' for Outlook)
         $mail->SMTPAuth = true;
-        $mail->Username = 'teambiasx@gmail.com'; // Replace with your Gmail
-        $mail->Password = 'ntxq zgjg hlcp bsaw';   // Generate an App Password from Google
+        $mail->Username = ''; // Replace with your Gmail
+        $mail->Password = '';   // Generate an App Password from Google
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
